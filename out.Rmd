@@ -1,0 +1,198 @@
+---
+title: "DCC_variation"
+output: html_document
+date: "2025-06-01"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## data reading and cleaning
+
+
+```{r cars}
+library(dplyr)
+OUT<-read.csv("DCC_out.csv", sep=";", stringsAsFactors=TRUE)
+OUT_dis <- distinct(OUT, Text, .keep_all = TRUE)  
+out_data<- OUT_dis[rowSums(is.na(OUT_dis) | OUT_dis == "") < ncol(OUT_dis), ]
+summary(out_data)
+```
+
+
+#defining factors
+```{r}
+library(base)
+out_data$Response<-as.factor(out_data$Response)
+out_data$NP_Length<- as.numeric(out_data$NP_Length)
+out_data$NP_Concreteness<- as.factor(out_data$NP_Concreteness)
+out_data$NP_starting_tone<- as.factor(out_data$NP_starting_tone)
+out_data$TimePeriod2<- as.factor(out_data$TimePeriod2)
+out_data$Genre<- as.factor(out_data$Genre)
+out_data$Region<- as.factor(out_data$Region)
+#the frequency of responses
+response_counts <- table(out_data$Response)
+print(response_counts)
+
+```
+# sorting out diachornic change in the use of two variants
+```{r}
+library(dplyr)
+library(ggplot2)
+
+response_counts <- out_data %>%
+  group_by(TimePeriod, Response) %>%
+  summarise(Frequency = n()) 
+
+ggplot(response_counts, aes(x = TimePeriod, y = Frequency, color = Response, group = Response)) +
+  geom_line(size = 1) +  # Creates trend lines
+  geom_point(size = 3) +  # Adds data points
+  labs(title = "Response Frequency Across Time Periods",
+       x = "Time Period",
+       y = "Frequency",
+       color = "Response") +
+  theme_minimal()
+```
+
+
+#plotting NP Length and DCC variation 
+```{r}
+install.packages("ggplot2")
+library(ggplot2)
+
+out_data$log_NP_Length <- log(out_data$NP_Length +1)  # Adding 1 prevents log(0) issues
+
+ggplot(out_data, aes(x = Response, y = log_NP_Length)) +
+  geom_boxplot(fill = "lightblue", color = "black") +
+  stat_summary(fun = mean, geom = "point", shape = 18, color = "red", size = 3) +  # Mean (Red Diamond)
+  stat_summary(fun = median, geom = "point", shape = 8, color = "blue", size = 3) +  # Median (Blue Star)
+  labs(title = "Boxplot of Log-Transformed NP_Length vs. Response",
+       x = "Response",
+       y = "Log(NP_Length)") +
+  theme_minimal()
+```
+```{r}
+boxplot(out_data$log_NP_Length ~ out_data$Response, 
+        data=out_data
+)
+```
+
+
+#identifying important constraints on DCC variation -- conditional inference tree
+```{r}
+library(car)         # to calculate VIFs
+library(Hmisc)       # to calculate C values
+library(party)       # for ctrees and CRF
+
+tree = ctree(Response ~ TimePeriod2 + log_NP_Length + NP_Concreteness + NP_starting_tone + Genre + Region, data = out_data,control=ctree_control(maxdepth=5)) # maxdepth specifies the height of the tree. Reduce to reduce complexity.
+plot(tree)
+
+```
+assessing mdel fitting
+```{r}
+ctree.pred <- unlist(treeresponse(tree))[c(FALSE, TRUE)]
+somers2(ctree.pred, as.numeric(out_data$Response) - 1)
+```
+
+#plotting factor importance using CRF
+```{r}
+
+set.seed(123) # esnures that we can reproduce results
+forest = cforest(Response ~ TimePeriod2 + log_NP_Length + NP_Concreteness + NP_starting_tone + Genre + Region, data = out_data)
+
+#### calculate variable importance ranking, takes some time
+forest.varimp = varimp(forest, conditional = FALSE) 
+
+#### model C index
+#### C ranges between 0.5 an 1; the closer to 1, the better the model
+prob2.rf <- unlist(treeresponse(forest))[c(FALSE, TRUE)]
+somerssmallcrf <- somers2(prob2.rf, as.numeric(out_data$Response) - 1)
+somerssmallcrf["C"]
+
+```
+excellent predictability
+
+#plotting out CRF
+```{r}
+install.packages("lattice")
+library(lattice)
+
+### the dot plot visualizing the variable importance ranking
+dotplot(sort(forest.varimp), xlab="Variable Importance", panel = function(x,y){
+  panel.dotplot(x, y, col='darkblue', pch=16, cex=1.1)
+  panel.abline(v=abs(min(forest.varimp)), col='red',
+               lty='longdash', lwd=2)
+}
+) 
+```
+
+#how constraints regulating DCC variation -- GLMER
+```{r}
+library(lme4)        # for mixed-effects regression
+library(MuMIn)       # for PSeudo R2 measures
+library(effects)     # for partial effects plot
+library(report)      # for description of various objects
+library(parameters)  # to examine model effects
+library(performance) # to assess and compare model performance
+install.packages("broom.mixed") #for plotting 
+install.packages("gt")
+library(broom.mixed)
+library(gt)
+library(dplyr)
+# defining reference response
+out_data$Response <- relevel(out_data$Response, ref="Split") # reference level is split, thus predicted odds are for continuous
+
+mixed_model <- glmer(Response ~ TimePeriod2 + log_NP_Length + NP_Concreteness + (1|Genre) + (1|Region), data = out_data, family=binomial)
+print(summary(mixed_model), corr = F)
+
+# Tidy the mixed_model output
+tidy_model <- tidy(mixed_model)
+
+# Keep only fixed effects (filter out random effects)
+tidy_fixed <- tidy_model %>%
+  filter(effect == "fixed") %>%  # Removes random effect estimates
+  select(-group)  # Excludes the 'group' column
+
+# Create a visualized table using gt()
+tidy_fixed %>%
+  gt() %>%
+  tab_header(title = "Model Results (Fixed Effects Only)") %>%
+  fmt_number(columns = c(estimate, std.error, p.value), decimals = 5) 
+```
+
+model assessment
+```{r}
+library(Hmisc) 
+model_values<-somers2(binomial()$linkinv(fitted(mixed_model)), as.numeric(out_data$Response) -1)
+kable(model_values)
+```
+
+C (Concordance Index) = 0.97 → Measures discrimination ability. A value close to 1 suggests the model is highly effective at distinguishing between outcomes.
+Dxy (Somers' D Rank Correlation) = 0.93 → Indicates strong rank correlation between predicted probabilities and actual responses. High values suggest robust predictive power.
+
+#assessing to what extent the model explains variance
+```{r}
+# The proportion of correctly predicted values is calculated by cross tabulating the observed and predicted values.
+install.packages("gmodels")
+library(gmodels)
+library(knitr)
+fitted <- fitted(mixed_model)
+predicted <- ifelse(fitted >= .5, 1,0)
+a <- data.frame(out_data, predicted)
+cross_table<-CrossTable(out_data$Response, a$predicted)
+kable(cross_table)
+```
+
+#Pseudo R2 measures 
+(see https://www.rdocumentation.org/packages/MuMIn/versions/1.40.4/topics/r.squaredGLMM)
+R2m: Pseudo-R2 (marginal) -- represents the % variance explained by fixed factors
+R2c: Pseudo-R2 (conditional) -- is interpreted as variance explained by both fixed and random factors (i.e. the entire model),
+```{r}
+r_squared<-r.squaredGLMM(mixed_model)
+kable(r_squared)
+```
+#Plotting all effects
+```{r}
+plot(allEffects(mixed_model))
+```
+
