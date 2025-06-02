@@ -18,9 +18,31 @@ Methods:
 
 # Setting up
 ## data reading and cleaning
+```{r loading packages,echo = FALSE, eval = TRUE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+library(car)         # to calculate VIFs
+library(Hmisc)       # to calculate C values
+library(party)       # for ctrees and CRF
+#install.packages("lattice")
+library(lattice)
+library(lme4)        # for mixed-effects regression
+library(MuMIn)       # for PSeudo R2 measures
+library(effects)     # for partial effects plot
+library(report)      # for description of various objects
+library(parameters)  # to examine model effects
+library(performance) # to assess and compare model performance
+#install.packages("broom.mixed") #for plotting 
+#install.packages("gt")
+library(broom.mixed)
+library(gt)
+library(knitr)
+#install.packages("gmodels")
+library(gmodels)
+```
+
 
 ```{r set-up, echo = TRUE, eval = TRUE}
-library(dplyr)
 OUT<-read.csv("DCC_out.csv", sep=";", stringsAsFactors=TRUE) 
 OUT_dis <- distinct(OUT, Text, .keep_all = TRUE) # removing duplicates
 out_data<- OUT_dis[rowSums(is.na(OUT_dis) | OUT_dis == "") < ncol(OUT_dis), ] # removing NA/empty observations
@@ -29,7 +51,7 @@ summary(out_data)
 
 
 ## defining factors
-```{r defining variables, echo = TRUE, eval = TRUE}
+```{r defining variables, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
 library(base)
 out_data$Response<-as.factor(out_data$Response)
 out_data$NP_Length<- as.numeric(out_data$NP_Length)
@@ -50,11 +72,10 @@ print(response_counts)
 
 ```
 
-# The Diachornic Change of the Two Variants' Frequency
-```{r response counts, echo = TRUE, eval = TRUE}
-library(dplyr)
-library(ggplot2)
 
+# The Diachornic Change of the Two Variants' Frequency
+
+```{r response counts, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
 response_counts <- out_data %>%
   group_by(TimePeriod, Response) %>%
   summarise(Frequency = n()) 
@@ -72,9 +93,6 @@ ggplot(response_counts, aes(x = TimePeriod, y = Frequency, color = Response, gro
 
 # Plotting NP Length vs. Variants 
 ```{r NP Length distribution, echo = TRUE, eval = TRUE, fig.width=6, fig.height=4}
-#install.packages("ggplot2")
-library(ggplot2)
-
 out_data$log_NP_Length <- log(out_data$NP_Length +1)  # Adding 1 prevents log(0) issues
 
 ggplot(out_data, aes(x = Response, y = log_NP_Length)) +
@@ -90,23 +108,21 @@ ggplot(out_data, aes(x = Response, y = log_NP_Length)) +
 
 # Identifying important constraints on DCC variation 
 ## conditional inference tree
+
 ```{r conditional inference tree, echo = TRUE, eval = TRUE, fig.width=10, fig.height=10}
-library(car)         # to calculate VIFs
-library(Hmisc)       # to calculate C values
-library(party)       # for ctrees and CRF
 
 tree = ctree(Response ~ TimePeriod2 + log_NP_Length + NP_Givenness + Structural_priming + NP_Concreteness + is_NP_S_tone_1st + Genre + Region, data = out_data,control=ctree_control(maxdepth=5)) # maxdepth specifies the height of the tree. Reduce to reduce complexity.
 plot(tree)
 
 ```
 assessing mdel fitting
-```{r tree evaluation, echo = TRUE, eval = TRUE}
+```{r tree evaluation, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
 ctree.pred <- unlist(treeresponse(tree))[c(FALSE, TRUE)]
 somers2(ctree.pred, as.numeric(out_data$Response) - 1)
 ```
 
 ## plotting factor importance using CRF
-```{r CRF model fitting, echo = TRUE, eval = TRUE}
+```{r CRF model fitting, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
 
 set.seed(123) # esnures that we can reproduce results
 forest = cforest(Response ~ TimePeriod2 + log_NP_Length + NP_Givenness + Structural_priming + NP_Concreteness + is_NP_S_tone_1st + Genre + Formality + Modal + Region, data = out_data)
@@ -124,9 +140,8 @@ somerssmallcrf["C"]
 excellent predictability
 
 plotting out CRF
+
 ```{r CRF plotting, echo = TRUE, eval = TRUE, fig.width=6, fig.height=4}
-#install.packages("lattice")
-library(lattice)
 
 ### the dot plot visualizing the variable importance ranking
 dotplot(sort(forest.varimp), xlab="Variable Importance", panel = function(x,y){
@@ -139,18 +154,9 @@ dotplot(sort(forest.varimp), xlab="Variable Importance", panel = function(x,y){
 
 
 # How constraints regulating DCC variation -- GLMER
-```{r mixed-effect model fitting, echo = TRUE, eval = TRUE}
-library(lme4)        # for mixed-effects regression
-library(MuMIn)       # for PSeudo R2 measures
-library(effects)     # for partial effects plot
-library(report)      # for description of various objects
-library(parameters)  # to examine model effects
-library(performance) # to assess and compare model performance
-#install.packages("broom.mixed") #for plotting 
-#install.packages("gt")
-library(broom.mixed)
-library(gt)
-library(dplyr)
+
+```{r mixed-effect model fitting, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
+
 # defining reference response/i_variable level
 out_data$Response <- relevel(out_data$Response, ref="Split")# reference level is split, thus predicted odds are for continuous
 out_data$NP_Concreteness<-relevel(out_data$NP_Concreteness, ref="Non-concrete")
@@ -161,12 +167,10 @@ print(summary(mixed_model), corr = F)
 # Tidy the mixed_model output
 tidy_model <- tidy(mixed_model)
 
-# Keep only fixed effects (filter out random effects)
 tidy_fixed <- tidy_model %>%
   filter(effect == "fixed") %>%  # Removes random effect estimates
   select(-group)  # Excludes the 'group' column
 
-# Create a visualized table using gt()
 tidy_fixed %>%
   gt() %>%
   tab_header(title = "Model Results (Fixed Effects Only)") %>%
@@ -174,9 +178,9 @@ tidy_fixed %>%
 ```
 
 model assessment
-```{r model evaluation, echo = TRUE, eval = TRUE}
-library(Hmisc) 
-library(knitr)
+
+```{r model evaluation, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
+
 model_values<-somers2(binomial()$linkinv(fitted(mixed_model)), as.numeric(out_data$Response) -1)
 kable(model_values)
 ```
@@ -185,11 +189,10 @@ C (Concordance Index) = 0.97 → Measures discrimination ability. A value close 
 Dxy (Somers' D Rank Correlation) = 0.93 → Indicates strong rank correlation between predicted probabilities and actual responses. High values suggest robust predictive power.
 
 assessing to what extent the model explains variance
-```{r model explainability, echo = TRUE, eval = TRUE}
+
+```{r model explainability, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
 # The proportion of correctly predicted values is calculated by cross tabulating the observed and predicted values.
-#install.packages("gmodels")
-library(gmodels)
-library(knitr)
+
 fitted <- fitted(mixed_model)
 predicted <- ifelse(fitted >= .5, 1,0)
 a <- data.frame(out_data, predicted)
@@ -201,7 +204,7 @@ Pseudo R2 measures
 (see https://www.rdocumentation.org/packages/MuMIn/versions/1.40.4/topics/r.squaredGLMM)
 R2m: Pseudo-R2 (marginal) -- represents the % variance explained by fixed factors
 R2c: Pseudo-R2 (conditional) -- is interpreted as variance explained by both fixed and random factors (i.e. the entire model),
-```{r model r square, echo = TRUE, eval = TRUE}
+```{r model r square, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
 r_squared<-r.squaredGLMM(mixed_model)
 kable(r_squared)
 ```
