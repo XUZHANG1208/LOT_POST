@@ -1,23 +1,22 @@
 ---
-title: "The Probabalistic Variation of the Directional Compound Complement (DCC) Construction in Mandarin Chinese"
+title: "Cognitive and Sociolectal Constraints on the Placement of 'lai' as a Telicity Marker in Mandarin Chinese"
 author: "Xu Zhang"
 output: 
-  html_document:
+   html_document:
     toc: true
-    toc_depth: 2
+    toc_depth: 1
     toc_float: true
 date: "2025-06-01"
 
 ---
 # Introduction:
-DCC
+In Mandarin Chinese, 
 Why a variationist perspective
 What are key findings:
 
 Methods: 
 
-# Setting up
-## data reading and cleaning
+# Setting up: data reading and cleaning
 ```{r loading packages,echo = FALSE, eval = TRUE, message=FALSE, warning=FALSE}
 library(dplyr)
 library(ggplot2)
@@ -49,17 +48,17 @@ out_data<- OUT_dis[rowSums(is.na(OUT_dis) | OUT_dis == "") < ncol(OUT_dis), ] # 
 summary(out_data)
 ```
 
+In total, we obtained 701 observations
 
-## defining factors
-```{r defining variables, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
+# Data overview
+```{r data overview, fig.cap="Figure 1: data overview", echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
 library(base)
 out_data$Response<-as.factor(out_data$Response)
 out_data$NP_Length<- as.numeric(out_data$NP_Length)
 out_data$Structural_priming<-as.factor(out_data$Structural_priming)
 out_data$NP_Givenness<-as.factor(out_data$NP_Givenness)
 out_data$NP_Concreteness<- as.factor(out_data$NP_Concreteness)
-out_data$NP_starting_tone<- as.factor(out_data$NP_starting_tone)
-out_data$is_NP_S_tone_1st<-as.factor(out_data$is_NP_S_tone_1st)
+out_data$Verb_Syllables<-as.numeric(out_data$Verb_Syllables)
 out_data$TimePeriod<- as.factor(out_data$TimePeriod)
 out_data$TimePeriod2<- as.factor(out_data$TimePeriod2)
 out_data$Genre<- as.factor(out_data$Genre)
@@ -68,14 +67,34 @@ out_data$Modal<-as.factor(out_data$Modal)
 out_data$Region<- as.factor(out_data$Region)
 #the frequency of responses
 response_counts <- table(out_data$Response)
-print(response_counts)
+piechart<-pie(response_counts, 
+    main = "Response Distribution", 
+    col = rainbow(length(response_counts)), 
+    labels = paste(names(response_counts), response_counts, sep=": ")) 
+
+```
+
+# data annotation
+
+
+```{r variables, echo = TRUE, eval=TRUE}
+library(knitr)
+
+variables <- data.frame(
+    Variable = c("Response", "NP_Length", "Structural_priming", "NP_Givenness", "NP_Concreteness", "Verb_Syllables", "TimePeriod", "TimePeriod2", "Genre", "Formality", "Modal", "Region"),
+    Type = c("response variable", "numeric", "factor", "factor", "factor", "numeric", "factor", "factor", "factor", "factor", "factor", "factor"),
+    Explanation = c("continuous vs. split", "Object NP length - character numbers ", "Yes vs. No", "Given vs. New", "Concrete vs. Non-concrete", "the syllables of verbs in CDC constructions", "decade-based division", "sequencially labelling each two decades as a time period - 1, 2, 3, 4, 5, 6", "9 levels: news report, fiction, fiction-translation, interview, TV, essay, essay-translation, biography, online", "genres being divided according to formality: higher vs. lower", "genres being divided into written vs. spoken", "three regions: Mainland, Taiwan and Hong Kong")
+)
+
+# Render as a table
+kable(variables, caption = "Table 1: Data Annotation")
 
 ```
 
 
 # The Diachornic Change of the Two Variants' Frequency
 
-```{r response counts, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
+```{r response counts, fig.cap="Figure 2: Response Frequency Across Time Periods", echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
 response_counts <- out_data %>%
   group_by(TimePeriod, Response) %>%
   summarise(Frequency = n()) 
@@ -92,7 +111,7 @@ ggplot(response_counts, aes(x = TimePeriod, y = Frequency, color = Response, gro
 
 
 # Plotting NP Length vs. Variants 
-```{r NP Length distribution, echo = TRUE, eval = TRUE, fig.width=6, fig.height=4}
+```{r NP Length distribution, fig.cap="Figure 3: Log_NP_Length vs. Response", echo = TRUE, eval = TRUE, fig.width=6, fig.height=4}
 out_data$log_NP_Length <- log(out_data$NP_Length +1)  # Adding 1 prevents log(0) issues
 
 ggplot(out_data, aes(x = Response, y = log_NP_Length)) +
@@ -105,13 +124,19 @@ ggplot(out_data, aes(x = Response, y = log_NP_Length)) +
   theme_minimal()
 ```
 
+## the correlation between VP and NP weight
+```{r corelation between VP and NP weight, echo = TRUE, eval = TRUE}
+cor(out_data$Verb_Syllables, out_data$log_NP_Length)
+```
+
+weak positive pearson correlation: meaning it is slightly more likely that heavier NPs occur in constructions with heavier VPs. 
 
 # Identifying important constraints on DCC variation 
 ## conditional inference tree
 
-```{r conditional inference tree, echo = TRUE, eval = TRUE, fig.width=10, fig.height=10}
+```{r ctree, fig.cap="Figure 4: Ctree showing decision-making process based on statistically significant splits", echo = TRUE, eval = TRUE, fig.width=8, fig.height=6}
 
-tree = ctree(Response ~ TimePeriod2 + log_NP_Length + NP_Givenness + Structural_priming + NP_Concreteness + is_NP_S_tone_1st + Genre + Region, data = out_data,control=ctree_control(maxdepth=5)) # maxdepth specifies the height of the tree. Reduce to reduce complexity.
+tree = ctree(Response ~ TimePeriod2 + log_NP_Length + NP_Givenness + Structural_priming + NP_Concreteness + Verb_Syllables + Genre + Region, data = out_data,control=ctree_control(maxdepth=3)) # maxdepth specifies the height of the tree. Reduce to reduce complexity.
 plot(tree)
 
 ```
@@ -125,7 +150,7 @@ somers2(ctree.pred, as.numeric(out_data$Response) - 1)
 ```{r CRF model fitting, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
 
 set.seed(123) # esnures that we can reproduce results
-forest = cforest(Response ~ TimePeriod2 + log_NP_Length + NP_Givenness + Structural_priming + NP_Concreteness + is_NP_S_tone_1st + Genre + Formality + Modal + Region, data = out_data)
+forest = cforest(Response ~ TimePeriod2 + log_NP_Length + NP_Givenness + Structural_priming + NP_Concreteness + Verb_Syllables + Genre + Formality + Modal + Region, data = out_data)
 
 #### calculate variable importance ranking, takes some time
 forest.varimp = varimp(forest, conditional = FALSE) 
@@ -141,7 +166,7 @@ excellent predictability
 
 plotting out CRF
 
-```{r CRF plotting, echo = TRUE, eval = TRUE, fig.width=6, fig.height=4}
+```{r CRF plotting, fig.cap="Figure 5: Factor importance ranking" ,echo = TRUE, eval = TRUE, fig.width=6, fig.height=4}
 
 ### the dot plot visualizing the variable importance ranking
 dotplot(sort(forest.varimp), xlab="Variable Importance", panel = function(x,y){
@@ -155,13 +180,13 @@ dotplot(sort(forest.varimp), xlab="Variable Importance", panel = function(x,y){
 
 # How constraints regulating DCC variation -- GLMER
 
-```{r mixed-effect model fitting, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
+```{r mixed-effect model fitting,echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
 
 # defining reference response/i_variable level
 out_data$Response <- relevel(out_data$Response, ref="Split")# reference level is split, thus predicted odds are for continuous
 out_data$NP_Concreteness<-relevel(out_data$NP_Concreteness, ref="Non-concrete")
 
-mixed_model <- glmer(Response ~ TimePeriod2 + log_NP_Length + NP_Concreteness + Formality + (1|Genre) + (1|Region), data = out_data, family=binomial)
+mixed_model <- glmer(Response ~ TimePeriod2 + log_NP_Length + NP_Concreteness + Verb_Syllables + Formality + (1|Genre) + (1|Region), data = out_data, family=binomial)
 print(summary(mixed_model), corr = F)
 
 # Tidy the mixed_model output
@@ -173,7 +198,7 @@ tidy_fixed <- tidy_model %>%
 
 tidy_fixed %>%
   gt() %>%
-  tab_header(title = "Model Results (Fixed Effects Only)") %>%
+  tab_header(title = "Table 2: Model Results (Fixed Effects Only)") %>%
   fmt_number(columns = c(estimate, std.error, p.value), decimals = 5) 
 ```
 
@@ -210,7 +235,8 @@ kable(r_squared)
 ```
 
 ## Plotting all effects
-```{r partial effects, echo = TRUE, eval = TRUE, fig.width=10, fig.height=10}
+```{r partial effects, fig.cap="Figure 6: Plotting the effect of all factors", echo = TRUE, eval = TRUE, fig.width=10, fig.height=10}
+# Compute all effects for the mixed model
 plot(allEffects(mixed_model))
 ```
 
