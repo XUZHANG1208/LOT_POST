@@ -4,17 +4,53 @@ author: "Xu Zhang"
 output: 
    html_document:
     toc: true
-    toc_depth: 1
+    toc_depth: 2
     toc_float: true
 date: "2025-06-01"
 
 ---
 # Introduction:
-In Mandarin Chinese, 
-Why a variationist perspective
-What are key findings:
+In Mandarin Chinese, particles that indicate orientational movement (e.g., lai ‘come toward the speaker’) are widely used to convey the sense of goal achievement, functioning as telicity markers (Kang, 2001). The particle lai independently marks telic aktionsart, as seen in na lai (‘bring’ – telicity marker). Additionally, it combines with directional particles to form Compound Directional Complements (CDC), such as chu lai (‘out - come’) (Li & Thompson, 1989; Kang, 2001; Paul, 2022). When CDCs follow non-motional transitive verbs, they can appear as a continuous chunk, placing the object later in the sentence (Example 1). Alternatively, they can be split apart, allowing the object to be inserted in the mid-position (Example 2).
+ 
+ (1). Ta sheji chu-lai xinbiao.
+        She designed (out) a new watch.
+ 
+ (2). Ta sheji chu xinbiao lai.
+        She designed (out) a new watch.
 
-Methods: 
+Examples (1) and (2) are interchangeable, as both convey the same semantic meaning: "She designed a new watch."Verbal constructions featuring CDCs, such as chu lai, function as linguistic variables or alternations (Labov, 1969). When Mandarin speakers encounter multiple ways to express the same idea, their choice is probabilistically constrained by a range of cognitive, psychological, prosodic, cultural, and societal factors, which may include:
+
+The length of the object NP (Biber et al., 1999: 932–933): In English, longer or heavier elements tend to be placed at the end of a phrasal unit, exemplifying the End Weight Principle (Wasow, 2001). Similarly, Mandarin Chinese is influenced by the weight of noun phrases (NPs). When an object NP is particularly long, delaying its occurrence in natural language articulation can enhance fluency. This delay allows the speaker additional time to mentally organize and structure the NP before articulation.
+
+(3). Ta na chulai yiben shu. (NP=3 characters)
+       She took out one-classifier book.
+
+(4). Ta na chu shu lai. (NP=1 character)
+       She took out a book. 
+
+The accessibility of the object NP in a language user's working memory influences its placement in speech. In English, more accessible or active information in a speaker’s working memory is likely to be uttered earlier in a sentence. Several factors contribute to the conceptual accessibility of NPs, including givenness (Chen, 1986), concreteness (Gries, 2003), definiteness, and thematicity (Grafmiller & Szmrecsanyi, 2018a).
+•	Givenness: NPs that have appeared in the previous context within a certain timeframe are considered more accessible.
+•	Concreteness: The accessibility of an NP increases if its referent is visible and/or physically manipulatable.
+•	Definiteness: NPs with definite determiners (e.g., the book, that chair) are more likely to be processed sooner.
+•	Thematicity: Defined based on the normalized frequency of an NP's head noun within the given context.
+In Mandarin Chinese, these accessibility principles also play a role in structuring natural discourse, influencing when and how NPs appear in speech.
+
+Structural Priming/Persistence (Szmrecsanyi, 2006): Speakers tend to repeat previously encountered linguistic constructions—a phenomenon known as structural priming or persistence. When exposed to a continuous CDC, they may be more inclined to use the same construction when deciding between two available variants.
+
+Time and Genre (Li, Szmrecsanyi & Zhang, 2024): Language variation is often shaped by the diachronic evolution of the language itself. Additionally, stylistic pressure has been identified as an influential factor in previous variationist analyses of Mandarin dative constructions, affecting how speakers choose between linguistic variants over time.
+
+Prosody: Mandarin Chinese is characterized by its tone system, which plays a crucial role in speech rhythm and articulation. The number of syllables in the main verb preceding the CDC may influence speakers' choices between the two variants, potentially shaping sentence structure and prosodic flow.
+
+# Methodology
+## Data
+The Centre for Chinese Linguistics Corpus (CCL) at Peking University is a large-scale linguistic resource containing over 5.8 billion characters from more than 16 genres, covering a time span from 1100 BCE to the 2020s (Zhan et al., 2019).
+
+The corpus is partially part-of-speech coded, enabling the extraction of target observations based on specific linguistic patterns—"(v)chu(n)lai" for the split variant and "(v)chulai(n)" for the continuous variant. Data was sampled evenly across a 100-year period, with 60 observations per decade, totaling 1,200 entries. Before annotation, the dataset underwent manual filtering to remove non-CDCs, such as instances where lai functions as an infinitive marker (‘to’). The remaining observations were subjected to an interchangeability test to ensure that all tokens could validly alternate between the continuous and split variants. Suspicious cases were verified within the CCL corpus before finalizing the dataset. After data cleaning, the final dataset consists of 687 tokens, including 529 split CDCs and 158 continuous CDCs.
+
+## Statistical techniques (Levshina 2015): 
+A Conditional Inference Tree and Random Forest were used to identify key constraints that may impact probabilistic choice-making. These methods help determine which factors play a significant role in shaping linguistic variation.
+
+Additionally, a Mixed-Effects Logistic Regression Analysis was employed to model how these constraints influence the probabilistic decision-making process of Mandarin speakers, providing a more nuanced understanding of linguistic variation patterns.
 
 # Setting up: data reading and cleaning
 ```{r loading packages,echo = FALSE, eval = TRUE, message=FALSE, warning=FALSE}
@@ -48,7 +84,7 @@ out_data<- OUT_dis[rowSums(is.na(OUT_dis) | OUT_dis == "") < ncol(OUT_dis), ] # 
 summary(out_data)
 ```
 
-In total, we obtained 701 observations
+In total, we obtained 687 valid observations
 
 # Data overview
 ```{r data overview, fig.cap="Figure 1: data overview", echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
@@ -63,7 +99,7 @@ out_data$TimePeriod<- as.factor(out_data$TimePeriod)
 out_data$TimePeriod2<- as.factor(out_data$TimePeriod2)
 out_data$Genre<- as.factor(out_data$Genre)
 out_data$Formality<-as.factor(out_data$Formality)
-out_data$Modal<-as.factor(out_data$Modal)
+out_data$Mode<-as.factor(out_data$Mode)
 out_data$Region<- as.factor(out_data$Region)
 #the frequency of responses
 response_counts <- table(out_data$Response)
@@ -75,15 +111,47 @@ piechart<-pie(response_counts,
 ```
 
 # data annotation
+We examined 12 factors influencing linguistic variation, categorized into three broad domains:
+ 
+Cognitive-Psychological Factors – including NP length, NP accessibility, and priming effects.
+
+Sociolectal Factors – encompassing temporal, stylistic, and geographical influences.
+
+Prosodic Factors – particularly the syllable count of verbs in CDC constructions.
+
+Cognitive and psychological factors have been shown to play a significant role in conditioning English linguistic variation, yet their influence on probabilistic choices in Mandarin CDC variants remains largely unexplored. NP accessibility is particularly intriguing in this context.
+
+NP Givenness can be inferred through contextual clues. Concreteness of NPs is judged according to whether the NPs' referents are physically visible / manipulable or they are abstract concepts.
+
+However, unlike English, Mandarin lacks an article system, and it is uncommon for speakers to specify an element using definite demonstrative determiners in this particular construction. Given these structural differences, Mandarin NP definiteness warrants further discussion but is set aside here.
+
+Structural Priming: Tokens were extracted using a three-sentence window. If a CDC construction appears within this window before a target CDC variant, it triggers a priming effect. The dataset is annotated as follows:
+
+‘No’ – Indicates no structural priming occurred.
+
+‘Split’ – A split CDC construction was present before a split response.
+
+‘Continuous’ – A continuous CDC construction was present before a continuous response.
+
+Time: The CDC construction developed two variants in modern Chinese, as such cases were not observed in the CCL corpus before the 1920s. Consequently, this study focuses on the past 110 years of linguistic variation.
+Due to the limited dataset size, the GLMER model fitting divides the 11 time periods into six chunks, each spanning 20 years, with the 2020s treated separately. This division, however, contributes to the unreliable prediction of CDC variation in the 2020s.
+
+Genres: The dataset consists of nine genres, which can be categorized based on mode of communication into written and spoken forms. Additionally, following the formality spectrum proposed by Biber (1988), genres are classified into higher and lower formality levels in this case study:
+
+Higher-formality genres: Essay, essay translation, interview, news reports, and online blogs.
+
+Lower-formality genres: Biography, fiction, fiction translation, and TV content.
+
+The dataset primarily represents Mainland Chinese, with a small number of cases from Taiwan and Hong Kong. This regional distribution may introduce variability in predictions, so region was included as a random effect in the GLMER model to account for potential instability.
 
 
 ```{r variables, echo = TRUE, eval=TRUE}
 library(knitr)
 
 variables <- data.frame(
-    Variable = c("Response", "NP_Length", "Structural_priming", "NP_Givenness", "NP_Concreteness", "Verb_Syllables", "TimePeriod", "TimePeriod2", "Genre", "Formality", "Modal", "Region"),
+    Variable = c("Response", "NP_Length", "Structural_priming", "NP_Givenness", "NP_Concreteness", "Verb_Syllables", "TimePeriod", "TimePeriod2", "Genre", "Formality", "Mode", "Region"),
     Type = c("response variable", "numeric", "factor", "factor", "factor", "numeric", "factor", "factor", "factor", "factor", "factor", "factor"),
-    Explanation = c("continuous vs. split", "Object NP length - character numbers ", "Yes vs. No", "Given vs. New", "Concrete vs. Non-concrete", "the syllables of verbs in CDC constructions", "decade-based division", "sequencially labelling each two decades as a time period - 1, 2, 3, 4, 5, 6", "9 levels: news report, fiction, fiction-translation, interview, TV, essay, essay-translation, biography, online", "genres being divided according to formality: higher vs. lower", "genres being divided into written vs. spoken", "three regions: Mainland, Taiwan and Hong Kong")
+    Explanation = c("continuous vs. split", "Object NP length - character numbers ", "Split vs. Continuous vs. No", "Given vs. New", "Concrete vs. Non-concrete", "the syllables of verbs in CDC constructions", "decade-based division", "sequencially labelling each two decades as a time period - 1, 2, 3, 4, 5, 6", "9 levels: news report, fiction, fiction-translation, interview, TV, essay, essay-translation, biography, online", "genres being divided according to formality: higher vs. lower", "genres being divided into written vs. spoken", "three regions: Mainland, Taiwan and Hong Kong")
 )
 
 # Render as a table
@@ -108,6 +176,9 @@ ggplot(response_counts, aes(x = TimePeriod, y = Frequency, color = Response, gro
        color = "Response") +
   theme_minimal()
 ```
+Figure 2 illustrates the frequency distribution of the two variants across different time periods. Notably, the split variant consistently appeared more frequently than the continuous variant throughout the observed timeframe. Both variants, however, exhibited significant fluctuations in frequency over the period under investigation.
+
+A general declining trend is evident in the usage of the split variant, whereas the continuous variant has shown a gradual increase in popularity over time.
 
 
 # Plotting NP Length vs. Variants 
@@ -123,6 +194,9 @@ ggplot(out_data, aes(x = Response, y = log_NP_Length)) +
        y = "Log(NP_Length)") +
   theme_minimal()
 ```
+Figure 3 presents the log-transformed NP length for each variant. Notably, the continuous construction exhibits significantly longer NP lengths compared to the split variant. 
+
+Additionally, NP length in the continuous construction shows greater dispersion, indicating higher variability, whereas the split construction maintains a more consistent distribution.
 
 ## the correlation between VP and NP weight
 ```{r corelation between VP and NP weight, echo = TRUE, eval = TRUE}
@@ -131,7 +205,7 @@ cor(out_data$Verb_Syllables, out_data$log_NP_Length)
 
 weak positive pearson correlation: meaning it is slightly more likely that heavier NPs occur in constructions with heavier VPs. 
 
-# Identifying important constraints on DCC variation 
+# Results:
 ## conditional inference tree
 
 ```{r ctree, fig.cap="Figure 4: Ctree showing decision-making process based on statistically significant splits", echo = TRUE, eval = TRUE, fig.width=8, fig.height=6}
@@ -145,12 +219,17 @@ assessing mdel fitting
 ctree.pred <- unlist(treeresponse(tree))[c(FALSE, TRUE)]
 somers2(ctree.pred, as.numeric(out_data$Response) - 1)
 ```
+The Conditional Inference Tree illustrates key decision-making splits, where variables positioned higher in the hierarchy exert greater influence on the outcome. Each terminal node at the bottom provides a summary of cases that meet the conditions established by the preceding splits.
+
+In Figure 4, log NP length emerges as the most influential factor, with values exceeding 1.386 occurring exclusively in the continuous form. Genre represents the second most important split, distinguishing essay, interview, essay translation, and news reports from biography, fiction, fiction translation, and TV content. Below this, verb syllable count further refines the decision pathway.
+
+The tree initially presents six levels of splits, but for interpretability, it has been simplified to three levels. While the Conditional Inference Tree inherently reflects a hierarchy of factor importance, its detailed structure may be too granular for a broad overview of variable significance.
 
 ## plotting factor importance using CRF
 ```{r CRF model fitting, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
 
 set.seed(123) # esnures that we can reproduce results
-forest = cforest(Response ~ TimePeriod2 + log_NP_Length + NP_Givenness + Structural_priming + NP_Concreteness + Verb_Syllables + Genre + Formality + Modal + Region, data = out_data)
+forest = cforest(Response ~ TimePeriod2 + log_NP_Length + NP_Givenness + Structural_priming + NP_Concreteness + Verb_Syllables + Genre + Formality + Mode + Region, data = out_data)
 
 #### calculate variable importance ranking, takes some time
 forest.varimp = varimp(forest, conditional = FALSE) 
@@ -176,9 +255,14 @@ dotplot(sort(forest.varimp), xlab="Variable Importance", panel = function(x,y){
 }
 ) 
 ```
+The Random Forest method aggregates the results of multiple decision trees to generate a comprehensive prediction of factor importance. With a C-value of 0.98, our model demonstrates robust predictive performance.
+
+Figure 5 highlights NP length as the most influential factor, followed by genre, time period, formality, and verb syllables. In contrast, factors such as region, NP givenness, modality, structural priming, and NP concreteness exhibit lower importance in the model.
+
+However, while Random Forest identifies key factors, it does not determine the direction of their effects—that is, how these factors influence the selection between split and continuous variants. To address this limitation, a Mixed-Effects Logistic Regression Model is employed, offering deeper insights into whether and how these variables shape probabilistic choice-making.
 
 
-# How constraints regulating DCC variation -- GLMER
+## How constraints regulating CDC variation -- GLMER
 
 ```{r mixed-effect model fitting,echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
 
@@ -210,7 +294,8 @@ model_values<-somers2(binomial()$linkinv(fitted(mixed_model)), as.numeric(out_da
 kable(model_values)
 ```
 
-C (Concordance Index) = 0.97 → Measures discrimination ability. A value close to 1 suggests the model is highly effective at distinguishing between outcomes.
+C (Concordance Index) = 0.96 → Measures discrimination ability. A value close to 1 suggests the model is highly effective at distinguishing between outcomes.
+
 Dxy (Somers' D Rank Correlation) = 0.93 → Indicates strong rank correlation between predicted probabilities and actual responses. High values suggest robust predictive power.
 
 assessing to what extent the model explains variance
@@ -227,16 +312,49 @@ kable(cross_table)
 
 Pseudo R2 measures 
 (see https://www.rdocumentation.org/packages/MuMIn/versions/1.40.4/topics/r.squaredGLMM)
-R2m: Pseudo-R2 (marginal) -- represents the % variance explained by fixed factors
-R2c: Pseudo-R2 (conditional) -- is interpreted as variance explained by both fixed and random factors (i.e. the entire model),
+
 ```{r model r square, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
 r_squared<-r.squaredGLMM(mixed_model)
 kable(r_squared)
 ```
+R2m (marginal Pseudo-R2 and R2c (conditional Pseudo-R2) are the same, meaning the variance explained by fixed and fixed combined with randome effects are the same. For this analysis, fixed-effect logistic regression analysis is enough. 
+
+VIF values:
+```{r}
+glm_model <- glm(Response ~ TimePeriod2 + log_NP_Length + NP_Concreteness + Verb_Syllables + Formality, 
+                 data = out_data, family = binomial)
+
+vif_values <- vif(glm_model)
+kable(vif_values)
+```
+
+VIF stands for Variance Inflation Factor values. All adjusted GVIFs are close to 1, indicating very low to slight collinearity. The model has a very low level of multicollinearity. 
 
 ## Plotting all effects
 ```{r partial effects, fig.cap="Figure 6: Plotting the effect of all factors", echo = TRUE, eval = TRUE, fig.width=10, fig.height=10}
 # Compute all effects for the mixed model
 plot(allEffects(mixed_model))
 ```
+
+Table 2 presents the estimates of all fixed effects in our GLMER model, which demonstrates excellent discriminationwith a C-value above 0.96 and GVIF values close to 1. Among the significant effects, time periods spanning 1940s to 2010s show a preference for the continuous variant over the split CDCs. However, predictions for the 2020s are unreliable, given a p-value exceeding 0.05 and a high standard error, likely due to limited data from this period.
+
+Interestingly, NP concreteness favors the continuous variant, contrasting with findings from English particle placement studies, where NP accessibility typically predicts earlier NP occurrence, favoring the split variant(Grafmiller & Szmrecsanyi, 2018b).
+
+Additionally, while genre has been considered an important factor in prior analyses, the GLMER model suggests that formality level, rather than mode of genre, influences probabilistic choices between the two CDC variants—lower formality favors the continuous pattern.
+
+Finally, verb syllable count plays a crucial role in probabilistic choice-making, with higher-syllable verbs more likely to align with the continuous form.
+
+# Discussion
+comparing with English particle placement alternation + comparing results with variationist studies on Mandarin dative alternation. 
+
+NP accessibility in Mandarin Chinese needs further discussion
+
+Prosody/ rhythm in this case reveals something interesting. More discussions are needed. 
+
+# Next step:
+Expanding the dataset to include more CDCs like shanglai ‘up-lai’ and more.
+
+Including more genres and regional varieties in the dataset.
+
+Including more factors such as thematicity of NP, surprisal value of verb given ‘chulai’, etc.
 

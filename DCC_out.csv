@@ -1,4 +1,4 @@
-Index;Text;Verb_Syllables;Structural_priming;NP_Givenness;NP_Length;NP_Concreteness;NP_starting_tone;Response;Filename;TimePeriod;TimePeriod2;Genre;Formality;Modal;Region
+Index;Text;Verb_Syllables;Structural_priming;NP_Givenness;NP_Length;NP_Concreteness;NP_starting_tone;Response;Filename;TimePeriod;TimePeriod2;Genre;Formality;Mode;Region
 1700;...有饭大家吃，无论如何，不叫我一家人饿肚子。甚至有的朋友，愿意[[[拿出钱来]]]，叫我经营一间咖啡馆。这些温暖的友情，有生之涯，我是不会忘记的...;1;No;New;1;Non-concrete;2;Split;1940s\1949\报刊\人民日报\rmrb_1949_10.txt;1940s;2;News_report;Higher;Written;Mainland
 711;...他出来以后还能行医不能呢？我要是劝着他别多下石膏，也许不至再[[[惹出祸来]]]！”;1;No;New;1;Non-concrete;4;Split;1930s\1933\文学\1933 老舍 离婚.txt;1930s;1;Fiction;Lower;Written;Mainland
 555;...。金铨便问道：“阿三呢？哪里去了？倒偏是他忙。”燕西生怕父亲[[[追出原由来]]]，说道：“家里人都来吃饭了。一个招待的没有，究竟不好，三哥是在...;1;No;New;2;Non-concrete;2;Split;1930s\1932\文学\1932 张恨水 金粉世家.txt;1930s;1;Fiction;Lower;Written;Mainland
@@ -88,7 +88,7 @@ Index;Text;Verb_Syllables;Structural_priming;NP_Givenness;NP_Length;NP_Concreten
 1115;...不同之处。可是，他也能很大方。在应当买脸面的时候，他会狠心的[[[拿出钱来]]]，好不致于教他的红鼻子减少了光彩。假若有人给他一瓶好酒，他的鼻...;1;No;New;1;Non-concrete;2;Split;1940s\1944\文学\1944 老舍 四世同堂第一部_惶惑.txt;1940s;2;Fiction;Lower;Written;Mainland
 1091;...日头里晒了一上午又一下午，像烂熟的水果一般，往下坠着，坠着，[[[发出香味来]]]。;1;No;New;2;Non-concrete;1;Split;1940s\1944\文学\1944 张爱玲 金锁记.txt;1940s;2;Fiction;Lower;Written;Mainland
 37;皇太后见高宗悲伤不已，怕他因此[[[闷出病来]]]，特把高宗传到慈宁宫，着实开导一番，并要替他立刻选立皇后。高宗...;1;No;New;1;Non-concrete;4;Split;1920s\1921\文学\小说笔记\1921 陆士谔 清朝秘史.txt;1920s;1;Fiction;Lower;Written;Mainland
-1119;...而不能把它们联成一气，找出意思来。又待了一会儿，钱先生正式的[[[说出话来]]]：“好吧！再打吧！我没的说！没的说！”说着，他的手——与他的脚...;1;Yes;New;1;Non-concrete;4;Split;1940s\1944\文学\1944 老舍 四世同堂第一部_惶惑.txt;1940s;2;Fiction;Lower;Written;Mainland
+1119;...而不能把它们联成一气，找出意思来。又待了一会儿，钱先生正式的[[[说出话来]]]：“好吧！再打吧！我没的说！没的说！”说着，他的手——与他的脚...;1;Split;New;1;Non-concrete;4;Split;1940s\1944\文学\1944 老舍 四世同堂第一部_惶惑.txt;1940s;2;Fiction;Lower;Written;Mainland
 415;...缄默不言，袖手旁观呢？”匡胤深知郑恩性情暴躁，倘与辩白，恐怕[[[惹出事来]]]。便含笑答道：“贤弟责备，我已知过，停会儿请至我处，共商挽回之...;1;No;New;1;Non-concrete;4;Split;1920s\1929\文学\小说笔记\1929 许慕羲 宋代宫闱史.txt;1920s;1;Fiction;Lower;Written;Mainland
 1506;“唉，”刘满从心底里[[[抽出一口气来]]]，半天没言语，停了一会，才说：“这是咱家，咱哥不在，进去坐会儿...;1;No;New;3;Concrete;1;Split;1940s\1948\文学\1948 丁玲 太阳照在桑干河上.txt;1940s;2;Fiction;Lower;Written;Mainland
 1622;...看“红旗歌”的观众人人有份，以大家负责的精神毫不客气，给我们[[[提出意见来]]]。;1;No;New;2;Non-concrete;4;Split;1940s\1949\报刊\人民日报\rmrb_1949_05.txt;1940s;2;News_report;Higher;Written;Mainland
@@ -112,7 +112,7 @@ Index;Text;Verb_Syllables;Structural_priming;NP_Givenness;NP_Length;NP_Concreten
 784;她仿佛看见那张血脸把口张开，[[[说出话来]]]：“你会常常记着我吗？”;1;No;New;1;Concrete;4;Split;1930s\1934\文学\1934 巴金 电.txt;1930s;1;Fiction;Lower;Written;Mainland
 1199;...呼声纵情的欢笑声，历久不绝。佃户中一个姓张的老头子几乎感动得[[[流出泪来]]]说：“在头上的千斤闸可毁啦！”四千余佃户胜利了！巨大的行列，敲...;1;No;New;1;Concrete;4;Split;1940s\1946\报刊\人民日报\rmrb_1946_05.txt;1940s;2;News_report;Higher;Written;Mainland
 1108;老人把眼闭严，没[[[回出话来]]]。;1;No;New;1;Non-concrete;4;Split;1940s\1944\文学\1944 老舍 四世同堂第一部_惶惑.txt;1940s;2;Fiction;Lower;Written;Mainland
-100;...及了。在国内干出丑事来，只害了自家本人，被辱没的有限，在此地[[[干出丑事来]]]，新闻上一宣布，就连“中华民国”四个字都被玷污了。我们没有悬崖...;1;Yes;Given;2;Non-concrete;3;Split;1920s\1922\文学\小说笔记\1922_10_1 向恺然 留东外史续集.txt;1920s;1;Fiction;Lower;Written;Mainland
+100;...及了。在国内干出丑事来，只害了自家本人，被辱没的有限，在此地[[[干出丑事来]]]，新闻上一宣布，就连“中华民国”四个字都被玷污了。我们没有悬崖...;1;Split;Given;2;Non-concrete;3;Split;1920s\1922\文学\小说笔记\1922_10_1 向恺然 留东外史续集.txt;1920s;1;Fiction;Lower;Written;Mainland
 383;...我在这里赔罪，也该算了，为什么兀地哭得不休呢？万一伤感过度，[[[弄出毛病来]]]，便怎么办呢？”她下死劲朝他一瞅，说道：“谁要你在这里罗嗦没了...;1;No;New;2;Non-concrete;2;Split;1920s\1928\文学\小说笔记\1928 徐哲身 汉代宫廷艳史.txt;1920s;1;Fiction;Lower;Written;Mainland
 125;...毓姊妹，不要被人挤散了。自己分开众人，挤向前去买入场券。陈毓[[[拿出钱来]]]，要何达武去代买。周撰止住道：“此时买的人太多，铁脚闹不清楚。...;1;No;New;1;Concrete;2;Split;1920s\1922\文学\小说笔记\1922_10_1 向恺然 留东外史续集.txt;1920s;1;Fiction;Lower;Written;Mainland
 420;...尝点烛，宫殿之间，都悬挂着夜明珠，到了天色已晚，那夜明珠自然[[[放出光来]]]，照耀数丈，如同白昼。妃嫔宫人，习以为常，见了灯烛，都憎嫌着有...;1;No;New;1;Concrete;1;Split;1920s\1929\文学\小说笔记\1929 许慕羲 宋代宫闱史.txt;1920s;1;Fiction;Lower;Written;Mainland
@@ -131,7 +131,7 @@ Index;Text;Verb_Syllables;Structural_priming;NP_Givenness;NP_Length;NP_Concreten
 338;王莽因得手握大权，不似当年的谦恭下士，渐渐的[[[拿出手段来]]]了。太皇太后遂与王莽商量，应立何人为嗣？王莽听了，慌忙免冠伏地...;1;No;New;2;Non-concrete;3;Split;1920s\1928\文学\小说笔记\1928 徐哲身 汉代宫廷艳史.txt;1920s;1;Fiction;Lower;Written;Mainland
 1242;...“双十二”事变称：“‘双十二’对于中国人民的教训，那就是需要[[[拿出力量来]]]。人民愈有力量，就愈能迫使国民党反动派就范，当年蒋介石之所以半...;1;No;New;2;Non-concrete;4;Split;1940s\1946\报刊\人民日报\rmrb_1946_12.txt;1940s;2;News_report;Higher;Written;Mainland
 1543;...他们俩给铁路学校的校长栽赃。军部的人既有特殊的势力，又能即使[[[惹出祸来]]]也与他无关。“总得弄点什么给我们吃哟！”晓荷笑着说：“哪怕有四...;1;No;New;1;Non-concrete;4;Split;1940s\1948\文学\1948 老舍 四世同堂第三部_饥荒.txt;1940s;2;Fiction;Lower;Written;Mainland
-1816;...？站在林业工作者的立场，我们以为最好用事实表现，提起精神来，[[[拿出力量来]]]，抓紧机会，针对时令，迅速地，积极地，在被封建主和帝国主义一再...;1;Yes;New;2;Non-concrete;4;Split;1950s\1950\报刊\人民日报\rmrb_1950_03.txt;1950s;2;News_report;Higher;Written;Mainland
+1816;...？站在林业工作者的立场，我们以为最好用事实表现，提起精神来，[[[拿出力量来]]]，抓紧机会，针对时令，迅速地，积极地，在被封建主和帝国主义一再...;1;Split;New;2;Non-concrete;4;Split;1950s\1950\报刊\人民日报\rmrb_1950_03.txt;1950s;2;News_report;Higher;Written;Mainland
 589;...到那里去看看，收拾那边的残局。花了几个钱，倒是小事，可不要再[[[闹出笑话来]]]。”燕西道：“这自然是我的事，他们都叫我打一个电报到上海去，我...;1;No;New;2;Non-concrete;4;Split;1930s\1932\文学\1932 张恨水 金粉世家.txt;1930s;1;Fiction;Lower;Written;Mainland
 284;...退归馆驿，身上好似释了重负，想起了他被赚时的经过，不由地连连[[[吐出舌头来]]]，半晌缩不进去。第二天太宗皇帝圣;1;No;New;2;Concrete;2;Split;1920s\1927\文学\小说笔记\1927 许啸天 明代宫闱史.txt;1920s;1;Fiction;Lower;Written;Mainland
 936;...害，他们跟福官厉害，明白了吧？臭王八！”这最后的称赞，他没肯[[[指出姓名来]]]，怕桌子传给那个人，而他的屁股遭殃。;1;No;New;2;Non-concrete;4;Split;1930s\1936\文学\1936 老舍_牛天赐传.txt;1930s;1;Fiction;Lower;Written;Mainland
@@ -238,7 +238,7 @@ Index;Text;Verb_Syllables;Structural_priming;NP_Givenness;NP_Length;NP_Concreten
 536;...这笑容收起来了，就对他道：“哦！若是她有了不幸的事情，你就要[[[拿出钱来]]]，和她办理善后。若是她并不见得有这种事情哩，那末，你就还是不管...;1;No;New;1;Non-concrete;2;Split;1930s\1932\文学\1932 张恨水 金粉世家.txt;1930s;1;Fiction;Lower;Written;Mainland
 1183;...，他的脸永远是一块硬的砖，他的眼是一对小枪弹，他的眉毛老象要[[[拧出水来]]]。可是，当他们跟他硬顶的时候，他又忽然的软起来，甚至于给一个工...;1;No;New;1;Concrete;3;Split;1940s\1945\文学\1945 老舍 四世同堂第二部_偷生.txt;1940s;2;Fiction;Lower;Written;Mainland
 1982;...太太  你对！你会用糖儿豆儿的到这里捡便宜！你要是个男子汉，[[[拍出钱来]]]，买了她去！老这么白揩油算怎么回事呢？说个价儿，贱卖！;1;No;New;1;Non-concrete;2;Split;1950s\1950\文学\1950 老舍 方珍珠.txt;1950s;2;Fiction;Lower;Written;Mainland
-542;...柳春江缩回手去，正在舀着汤，嘴里咀嚼着，听她交代缘故呢。一说[[[玩出是非来]]]了，便一惊，问道：“怎么了？生出了什么是非？”手上一勺子汤，悬...;1;Yes;New;2;Non-concrete;4;Split;1930s\1932\文学\1932 张恨水 金粉世家.txt;1930s;1;Fiction;Lower;Written;Mainland
+542;...柳春江缩回手去，正在舀着汤，嘴里咀嚼着，听她交代缘故呢。一说[[[玩出是非来]]]了，便一惊，问道：“怎么了？生出了什么是非？”手上一勺子汤，悬...;1;Split;New;2;Non-concrete;4;Split;1930s\1932\文学\1932 张恨水 金粉世家.txt;1930s;1;Fiction;Lower;Written;Mainland
 950;...街市上已经很热闹。男人们一排一排的呆站着；女人们也时时从门里[[[探出头来]]]。她们大半也肿着眼眶；蓬着头；黄黄的脸，连脂粉也不及涂抹。;1;No;New;1;Concrete;2;Split;1930s\1936\文学\1936 鲁迅 故事新编.txt;1930s;1;Fiction;Lower;Written;Mainland
 988;...已止了泪，听见周老太太的一番话，触动了前情，觉得一阵心酸，又[[[淌出眼泪来]]]。她满脸泪痕地望着周老太太说：“婆，你不要担心，我在那边处处小...;1;No;Given;2;Concrete;3;Split;1930s\1938\文学\1938 巴金 春.txt;1930s;1;Fiction;Lower;Written;Mainland
 774;...散地垂在脑后。贤也不再笑了。他见了那个院子，一株龙眼树从里面[[[伸出头来]]]，恰恰遮了门前的阳光，对面是一堵破墙，墙头长着龙舌兰和仙人鞭。...;1;No;New;1;Concrete;2;Split;1930s\1934\文学\1934 巴金 电.txt;1930s;1;Fiction;Lower;Written;Mainland
@@ -423,7 +423,7 @@ Index;Text;Verb_Syllables;Structural_priming;NP_Givenness;NP_Length;NP_Concreten
 14;...利于身心健康。然而怎么玩，玩什么，应当引导，有所限制，否则会[[[玩出问题来]]]。事实上，一些学生玩的时间太多，玩的花样过多，已经使家长们担心...;1;No;New;2;Non-concrete;4;Split;2000s\2000\报刊\人民日报\rmrb_2000_02.txt;2000s;5;News_report;Higher;Written;Mainland
 15;“就是要[[[评出汗来]]]”;1;No;New;1;Concrete;4;Split;2000s\2000\报刊\人民日报\rmrb_2000_03.txt;2000s;5;News_report;Higher;Written;Mainland
 16;...过买保健品可不能凭着想当然。胡乱进补不仅于身体无补，而且还会[[[吃出事来]]]，这并不是没有教训。有着强大资金背景支持的中国保健网http：...;1;No;New;1;Non-concrete;4;Split;2000s\2000\报刊\人民日报\rmrb_2000_03.txt;2000s;5;News_report;Higher;Written;Mainland
-17;...学地思考。要思出方向来，思出经验来，思出精神来，思出干劲来，[[[思出办法来]]]。我们一定要认真贯彻江泽民总书记的要求，深入开展“致富思源、富...;1;Yes;New;2;Non-concrete;4;Split;2000s\2000\报刊\人民日报\rmrb_2000_03.txt;2000s;5;News_report;Higher;Written;Mainland
+17;...学地思考。要思出方向来，思出经验来，思出精神来，思出干劲来，[[[思出办法来]]]。我们一定要认真贯彻江泽民总书记的要求，深入开展“致富思源、富...;1;Split;New;2;Non-concrete;4;Split;2000s\2000\报刊\人民日报\rmrb_2000_03.txt;2000s;5;News_report;Higher;Written;Mainland
 18;...灾的虫害“强大小蠹”：“国家有关部门要赶紧组织人马下去调查，[[[拿出办法来]]]，把‘强大小蠹’消灭了。任其蔓延下去，整个华北的油松将面临灭顶...;1;No;New;2;Non-concrete;4;Split;2000s\2000\报刊\人民日报\rmrb_2000_03.txt;2000s;5;News_report;Higher;Written;Mainland
 20;...前，编辑们只好跪着。可对名人的文章，要是跪着瞧，仰着审，还能[[[品出好坏来]]]吗？;1;No;New;2;Non-concrete;3;Split;2000s\2000\报刊\人民日报\rmrb_2000_03.txt;2000s;5;News_report;Higher;Written;Mainland
 21;...有此行，到了现场，才明白个大概。原来咱们的先人可从夺命的干旱[[[逼出能耐来]]]了，他们把这一带大小山神全请上山来了，给每座神一只没底的东西：...;1;No;New;2;Non-concrete;2;Split;2000s\2000\报刊\人民日报\rmrb_2000_03.txt;2000s;5;News_report;Higher;Written;Mainland
@@ -467,8 +467,8 @@ Index;Text;Verb_Syllables;Structural_priming;NP_Givenness;NP_Length;NP_Concreten
 7;"...了能量守衡定律，而其具体的结构完全不必去管它。凡是企图凭空创[[[造出能量来]]]的机器就是永动机。换句话说，""永动机""的准确名称应该是""凭空造...";2;No;New;2;Non-concrete;2;Split;2010s\2010\应用文\自然科学\2010 程稳平_程实平 21世纪的牛顿力学.txt;2010s;5;Essay;Higher;Written;Mainland
 8;"...以作出推断：无论""磁能发动机""做得多么巧妙，它也不能够凭空产[[[生出能量来]]]。磁能与其它形式能量的相互转化过程，只不过是起着储能、放能的作...";2;No;New;2;Non-concrete;2;Split;2010s\2010\应用文\自然科学\2010 程稳平_程实平 21世纪的牛顿力学.txt;2010s;5;Essay;Higher;Written;Mainland
 9;...足协工作人员的范广鸣坦言，假球场次中，一些球的处理方式还是能[[[看出问题来]]]的，因为“技术失误和故意失误是不一样的”。;1;No;New;2;Non-concrete;4;Split;2010s\2010\报刊\人民日报\rmrb_2010_01.txt;2010s;5;News_report;Higher;Written;Mainland
-10;...改进工作、促进整改的过程，真正测评出方向来、测评出动力来、测[[[评出干劲来]]]。上级党组织和各级派出的指导员、指导小组要切实加强指导，确保总...;2;Yes;New;2;Non-concrete;4;Split;2010s\2010\报刊\人民日报\rmrb_2010_01.txt;2010s;5;News_report;Higher;Written;Mainland
-11;...改进工作、促进整改的过程，真正测评出方向来、测评出动力来、测[[[评出干劲来]]]。上级党组织和各级派出的指导员、指导小组要切实加强指导，确保总...;2;Yes;New;2;Non-concrete;4;Split;2010s\2010\报刊\人民日报\rmrb_2010_01.txt;2010s;5;News_report;Higher;Written;Mainland
+10;...改进工作、促进整改的过程，真正测评出方向来、测评出动力来、测[[[评出干劲来]]]。上级党组织和各级派出的指导员、指导小组要切实加强指导，确保总...;2;Split;New;2;Non-concrete;4;Split;2010s\2010\报刊\人民日报\rmrb_2010_01.txt;2010s;5;News_report;Higher;Written;Mainland
+11;...改进工作、促进整改的过程，真正测评出方向来、测评出动力来、测[[[评出干劲来]]]。上级党组织和各级派出的指导员、指导小组要切实加强指导，确保总...;2;Split;New;2;Non-concrete;4;Split;2010s\2010\报刊\人民日报\rmrb_2010_01.txt;2010s;5;News_report;Higher;Written;Mainland
 13;...谋福利的大学生“村官”，让我们更加坚定地走下去，干好、干实、[[[干出名堂来]]]。;1;No;New;2;Non-concrete;2;Split;2010s\2010\报刊\人民日报\rmrb_2010_01.txt;2010s;5;News_report;Higher;Written;Mainland
 14;...的“专业权威”：“提问前应该查一查相关资料再说”，“质疑也要[[[拿出道理来]]]”；另一方面，则是公众持续的“社会问责”。对学术公信力的拯救，...;1;No;New;2;Non-concrete;4;Split;2010s\2010\报刊\人民日报\rmrb_2010_01.txt;2010s;5;News_report;Higher;Written;Mainland
 17;...。三个关系的核心是保持经济平稳较快增长。这个做好了，我们就能[[[腾出手来]]]做好经济结构调整，解决中国经济深层次的问题。但是，保持平稳增长...;1;No;New;1;Non-concrete;3;Split;2010s\2010\报刊\人民日报\rmrb_2010_02.txt;2010s;5;News_report;Higher;Written;Mainland
@@ -640,11 +640,11 @@ Index;Text;Verb_Syllables;Structural_priming;NP_Givenness;NP_Length;NP_Concreten
 146;...一点，漂亮一点，是时代赋予服装行业的光荣使命。服装设计师们设[[[计出来款]]]式新颖的服装，怎样才能尽快地为顾客所了解、所接受呢？上海市手工...;2;No;Given;7;Concrete;3;Continuous;1980s\1983\报刊\人民日报\rmrb_1983_05.txt;1980s;4;News_report;Higher;Written;Mainland
 149;...他诙谐地说：“我的代表资格是拣来的。”因这时节，“岛”子里甭[[[想出来人]]]，他还是去年10月回内地探亲而被大雪堵在山外的“散兵”。这样，...;1;No;New;1;Concrete;2;Continuous;1980s\1983\报刊\人民日报\rmrb_1983_07.txt;1980s;4;News_report;Higher;Written;Mainland
 157;...两条腿和三条腿行走，腿越多时反而越没有力气？”聪明的俄狄浦斯[[[猜出来谜]]]底是人，因为人儿时用四肢爬行，成年时用双脚行走，到老年则加上一...;1;No;New;4;Non-concrete;2;Continuous;1980s\1983\报刊\读书\vol-050.txt;1980s;4;News_report;Higher;Written;Mainland
-195;...大的钢琴按一下琴键种一粒种子种子在土中流动着绿韵萌生出来、萌[[[生出来山]]]野响遍绿色的歌曲心扉中淌出的梦每个音符都染上绿色渴望着绿渴望着...;2;Yes;New;9;Non-concrete;1;Continuous;1980s\1987\报刊\人民日报\rmrb_1987_03.txt;1980s;4;News_report;Higher;Written;Mainland
+195;...大的钢琴按一下琴键种一粒种子种子在土中流动着绿韵萌生出来、萌[[[生出来山]]]野响遍绿色的歌曲心扉中淌出的梦每个音符都染上绿色渴望着绿渴望着...;2;Continuous;New;9;Non-concrete;1;Continuous;1980s\1987\报刊\人民日报\rmrb_1987_03.txt;1980s;4;News_report;Higher;Written;Mainland
 198;...1986年上半年发动机不良率达50％，有的用户竟从发动机里清[[[洗出来油]]]泥和铁屑。这不仅损害了用户的利益，也损害了“二汽”的信誉。;2;No;New;5;Concrete;2;Continuous;1980s\1987\报刊\人民日报\rmrb_1987_12.txt;1980s;4;News_report;Higher;Written;Mainland
 199;...国夏威夷大学教授罗锦堂博士在1985年所撰《能唱的元杂剧》竟[[[列出来剧]]]目100多种，以折数计近200折，只曲近250只左右。这份财富...;1;No;New;5;Concrete;4;Continuous;1980s\1987\报刊\人民日报\rmrb_1987_12.txt;1980s;4;News_report;Higher;Written;Mainland
 222;...却是一对乌黑发亮的二十响，子弹全都上了膛。只要那拢岸的船里，[[[钻出来官]]]兵，这一双绣花的巧手就能把他们一个个撂倒，而神出鬼没的二大爷，...;1;No;New;2;Concrete;1;Continuous;1990s\1990\文学\台湾作家\1990 高行健 灵山.txt;1990s;4;Fiction;Lower;Written;Taiwan
-224;...监狱里关满了人，他们都是没有多少理由便被抓进去的。她晓得哪怕[[[查出来蛛]]]丝马迹，不仅她和弗兰克，就连无事的皮蒂也得去坐牢。;1;Yes;New;4;Non-concrete;1;Continuous;1990s\1990\翻译作品\文学\1990 戴侃_李野光_庄绎传 飘.txt;1990s;4;Fiction_tanslation;Lower;Written;Mainland
+224;...监狱里关满了人，他们都是没有多少理由便被抓进去的。她晓得哪怕[[[查出来蛛]]]丝马迹，不仅她和弗兰克，就连无事的皮蒂也得去坐牢。;1;Continuous;New;4;Non-concrete;1;Continuous;1990s\1990\翻译作品\文学\1990 戴侃_李野光_庄绎传 飘.txt;1990s;4;Fiction_tanslation;Lower;Written;Mainland
 230;...电  科学家们最近提出警告，如果海湾战火使该地区油井燃烧而释[[[放出来烟]]]雾，将会影响亚洲季风，导致印度和东南亚数百万人死于干旱和饥饿。;2;No;New;2;Concrete;1;Continuous;1990s\1991\报刊\人民日报\rmrb_1991_01.txt;1990s;4;News_report;Higher;Written;Mainland
 234;...爷奶奶、夫妻和孩子，／拿起叉子、镰刀、耙和锄，／他们的劳动生[[[产出来粮]]]食，／他们的工作给了我们生活。;2;No;New;2;Concrete;2;Continuous;1990s\1991\报刊\读书\vol-147.txt;1990s;4;News_report;Higher;Written;Mainland
 235;大家见许布袋家门洞里[[[流出来血]]]，都有些害怕。;1;No;New;1;Concrete;3;Continuous;1990s\1991\文学\大陆作家\1991 刘震云 故乡天下黄花.txt;1990s;4;Fiction;Lower;Written;Mainland
@@ -697,6 +697,6 @@ Index;Text;Verb_Syllables;Structural_priming;NP_Givenness;NP_Length;NP_Concreten
 267;...示“不喜欢”，“小时候是不会去想下棋到底有什么好玩的，等我能[[[说出来国]]]象魅力的时候我已经没的选了。”这句话，可以看作丁立人对自己国象...;1;No;New;4;Non-concrete;2;Continuous;2010s\2017\报刊\人民日报\rmrb_2017_05.txt;2010s;5;News_report;Higher;Written;Mainland
 271;你有多久没[[[掏出来钱]]]包了？打开2017年的支付账单，北京市朝阳区某国企职员赵婧发现...;1;No;New;2;Concrete;2;Continuous;2010s\2018\报刊\人民日报\rmrb_2018_02.txt;2010s;5;News_report;Higher;Written;Mainland
 273;...话。贫困户或帮扶人拨打“57110998”扶贫热线，系统自动[[[弹出来电]]]者相关信息，工作人员根据反映的诉求，定向推送给帮扶人或者相关职...;1;No;New;6;Concrete;4;Continuous;2010s\2018\报刊\人民日报\rmrb_2018_05.txt;2010s;5;News_report;Higher;Written;Mainland
-1;...千次的频率模拟人用工具拍打被褥的动作，将内部灰尘拍打出来。拍[[[打出来灰]]]尘、毛发、头屑等物，再通过紫外线模拟太阳光，破坏微生物机体细胞...;2;Yes;New;8;Concrete;1;Continuous;2020s\2020\报刊\人民日报\rmrb_2020_02.txt;2020s;6;News_report;Higher;Written;Mainland
+1;...千次的频率模拟人用工具拍打被褥的动作，将内部灰尘拍打出来。拍[[[打出来灰]]]尘、毛发、头屑等物，再通过紫外线模拟太阳光，破坏微生物机体细胞...;2;Continuous;New;8;Concrete;1;Continuous;2020s\2020\报刊\人民日报\rmrb_2020_02.txt;2020s;6;News_report;Higher;Written;Mainland
 6;...村民曹建辉最期盼的就是播报结束后的“问政”环节，“前几天，我[[[提出来村]]]里一条小路被压坏了。结果没过两天，村里就派人把路给修好了。”;1;No;New;10;Concrete;1;Continuous;2020s\2020\报刊\人民日报\rmrb_2020_07.txt;2020s;6;News_report;Higher;Written;Mainland
 7;...村民曹建辉最期盼的就是播报结束后的“问政”环节，“前几天，我[[[提出来村]]]里一条小路被压坏了。结果没过两天，村里就派人把路给修好了。”;1;No;New;10;Concrete;1;Continuous;2020s\2020\报刊\人民日报\rmrb_2020_07.txt;2020s;6;News_report;Higher;Written;Mainland
